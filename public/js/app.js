@@ -99,7 +99,7 @@ function pinCard(item, i) {
       ${isVid ? `<div class="play-fab"><svg class="ic"><use href="#i-play"/></svg></div>` : ""}
       <div class="pin-veil">
         <div class="pin-top">
-          <button class="act-btn js-save ${saved ? "saved" : """ data-id="${item.id}">
+          <button class="act-btn js-save ${saved ? "saved" : ""}" data-id="${item.id}">
             <svg class="ic"><use href="#i-bookmark"/></svg>${saved ? "Tersimpan" : "Simpan"}
           </button>
           <button class="act-btn js-download" data-id="${item.id}">
