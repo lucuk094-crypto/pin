@@ -48,6 +48,16 @@ load_comments()
 
 UA = "GlassPin/1.0 (glassmorphism demo app; contact: local)"
 
+
+def fast_thumb(url):
+    """Thumbnail cepat: kecilkan ukuran Flickr langsung; fallback URL asli."""
+    if not url:
+        return url
+    m = re.match(r"(https://live\.staticflickr\.com/.+?)_[a-z]\.jpg$", url)
+    if m:
+        return m.group(1) + "_c.jpg"
+    return url
+
 def http_get_json(url, headers=None, timeout=10):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json", **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -76,7 +86,7 @@ def search_openverse(q, page, page_size, media_type):
             "title": (r.get("title") or "Tanpa judul").strip(),
             "description": (r.get("title") or "").strip(),
             "media_type": "image",
-            "thumbnail": r.get("thumbnail") or r.get("url"),
+            "thumbnail": fast_thumb(r.get("url")),
             "full": r.get("url"),
             "width": r.get("width"), "height": r.get("height"),
             "creator": {"name": r.get("creator") or "Tidak diketahui", "url": r.get("creator_url")},
@@ -99,7 +109,7 @@ def search_wikimedia(q, page, page_size, media_type):
         "iiurlwidth": 800, "format": "json", "formatversion": 2,
     })
     url = f"https://commons.wikimedia.org/w/api.php?{params}"
-    d = http_get_json(url, timeout=12)
+    d = http_get_json(url, timeout=8)
     items = []
     for p in (d.get("query", {}).get("pages") or []):
         ii = (p.get("imageinfo") or [{}])[0]
@@ -324,7 +334,7 @@ def do_search(q, page=1, page_size=20, media_type="all", pexels_key=None, pixaba
     for t in threads:
         t.start()
     for t in threads:
-        t.join(timeout=14)
+        t.join(timeout=9)
 
     pools, total = [], 0
     for res in results:

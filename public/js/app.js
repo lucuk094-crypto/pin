@@ -117,9 +117,17 @@ function pinCard(item, i) {
     </div>`;
 
   const img = $("img", card);
+  img.decoding = "async";
   img.src = item.thumbnail || item.full;
   img.alt = item.title || "Gambar";
-  img.addEventListener("error", () => { img.style.minHeight = "140px"; img.style.opacity = "0.35"; });
+  const showImg = () => img.classList.add("loaded");
+  img.addEventListener("load", showImg, { once: true });
+  img.addEventListener("error", () => {
+    showImg();
+    img.style.minHeight = "140px"; img.style.opacity = "0.35";
+    if (img.src !== item.full && item.full) img.src = item.full;
+  });
+  if (img.complete && img.naturalWidth > 0) showImg();
   $(".pin-title", card).textContent = item.title || "Tanpa judul";
   $(".by-name", card).textContent = item.creator?.name || "Tidak diketahui";
 

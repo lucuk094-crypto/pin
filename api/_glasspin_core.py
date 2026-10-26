@@ -49,6 +49,17 @@ def save_comments(data):
         pass
 
 # ---------------------------------------------------------------- HTTP helpers
+
+def fast_thumb(url):
+    """Thumbnail cepat: kecilkan ukuran Flickr langsung; fallback URL asli."""
+    if not url:
+        return url
+    # Flickr: _b (1024) -> _c (800) lebih ringan untuk grid
+    m = re.match(r"(https://live\.staticflickr\.com/.+?)_[a-z]\.jpg$", url)
+    if m:
+        return m.group(1) + "_c.jpg"
+    return url
+
 def http_get_json(url, headers=None, timeout=10):
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json", **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -57,7 +68,7 @@ def http_get_json(url, headers=None, timeout=10):
 # ---------------------------------------------------------------- providers
 def search_openverse(q, page, page_size, media_type):
     params = urllib.parse.urlencode({"q": q, "page": page, "page_size": min(page_size, 20), "mature": "false"})
-    d = http_get_json(f"https://api.openverse.org/v1/images/?{params}", timeout=12)
+    d = http_get_json(f"https://api.openverse.org/v1/images/?{params}", timeout=8)
     items = []
     for r in d.get("results", []):
         if media_type == "video":
@@ -67,7 +78,7 @@ def search_openverse(q, page, page_size, media_type):
             "title": (r.get("title") or "Tanpa judul").strip(),
             "description": (r.get("title") or "").strip(),
             "media_type": "image",
-            "thumbnail": r.get("thumbnail") or r.get("url"),
+            "thumbnail": fast_thumb(r.get("url")),
             "full": r.get("url"),
             "width": r.get("width"), "height": r.get("height"),
             "creator": {"name": r.get("creator") or "Tidak diketahui", "url": r.get("creator_url")},
@@ -88,7 +99,7 @@ def search_wikimedia(q, page, page_size, media_type):
         "prop": "imageinfo", "iiprop": "url|mime|size|extmetadata",
         "iiurlwidth": 800, "format": "json", "formatversion": 2,
     })
-    d = http_get_json(f"https://commons.wikimedia.org/w/api.php?{params}", timeout=12)
+    d = http_get_json(f"https://commons.wikimedia.org/w/api.php?{params}", timeout=8)
     items = []
     for p in (d.get("query", {}).get("pages") or []):
         ii = (p.get("imageinfo") or [{}])[0]
@@ -286,7 +297,7 @@ def do_search(q, page=1, page_size=20, media_type="all", pexels_key=None, pixaba
     for t in threads:
         t.start()
     for t in threads:
-        t.join(timeout=12)
+        t.join(timeout=9)
 
     pools, total = [], 0
     for res in results:
@@ -337,8 +348,15 @@ def do_feed(page=1, page_size=20, media_type="all", pexels_key=None, pixabay_key
             return hit[1]
     t1 = FEED_TOPICS[((page - 1) * 2) % len(FEED_TOPICS)]
     t2 = FEED_TOPICS[((page - 1) * 2 + 1) % len(FEED_TOPICS)]
-    a = do_search(t1, 1, max(page_size // 2, 8), media_type, pexels_key, pixabay_key)
-    b = do_search(t2, 1, max(page_size // 2, 8), media_type, pexels_key, pixabay_key)
+    box = {}
+    def grab(key, topic):
+        box[key] = do_search(topic, 1, max(page_size // 2, 8), media_type, pexels_key, pixabay_key)
+    th1 = threading.Thread(target=grab, args=("a", t1), daemon=True)
+    th2 = threading.Thread(target=grab, args=("b", t2), daemon=True)
+    th1.start(); th2.start()
+    th1.join(timeout=20); th2.join(timeout=20)
+    a = box.get("a", {"items": [], "errors": []})
+    b = box.get("b", {"items": [], "errors": []})
     payload = {
         "items": a["items"] + b["items"], "total": len(a["items"]) + len(b["items"]),
         "topics": [t1, t2], "query": f"{t1} + {t2}", "page": page,
