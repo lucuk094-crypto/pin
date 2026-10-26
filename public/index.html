@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlassPin — Temukan & Bagikan Inspirasi</title>
+  <meta name="description" content="GlassPin — galeri inspirasi bergaya glassmorphism. Cari gambar & video, unduh, komentar, tanpa login." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a876' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 17v5'/%3E%3Cpath d='M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== SVG Sprite: ikon resmi Lucide (https://lucide.dev) — ISC License ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+    </symbol>
+    <symbol id="i-home" viewBox="0 0 24 24">
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+    </symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24">
+      <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+    </symbol>
+    <symbol id="i-message" viewBox="0 0 24 24">
+      <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+    </symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24">
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <polygon points="6 3 20 12 6 21 6 3"/>
+    </symbol>
+    <symbol id="i-external" viewBox="0 0 24 24">
+      <path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24">
+      <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+    </symbol>
+    <symbol id="i-image" viewBox="0 0 24 24">
+      <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+    </symbol>
+    <symbol id="i-video" viewBox="0 0 24 24">
+      <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/>
+    </symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24">
+      <rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24">
+      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M20 6 9 17l-5-5"/>
+    </symbol>
+    <symbol id="i-key" viewBox="0 0 24 24">
+      <path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/>
+    </symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24">
+      <path d="m15 18-6-6 6-6"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 18 6-6-6-6"/>
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24">
+      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24">
+      <path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24">
+      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+    </symbol>
+    <symbol id="i-loader" viewBox="0 0 24 24">
+      <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+    </symbol>
+    <symbol id="i-folder-heart" viewBox="0 0 24 24">
+      <path d="M11 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v3"/><circle cx="16.5" cy="17.5" r="2.5"/><path d="M21.3 17.9 19 15.6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===== Latar gradasi lembut ===== -->
+<div class="bg-scene" aria-hidden="true">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- ===== Navbar ===== -->
+<header class="navbar glass">
+  <a class="brand" href="#" id="brandHome" aria-label="GlassPin beranda">
+    <span class="brand-mark"><svg class="ic"><use href="#i-pin"/></svg></span>
+    <span class="brand-name">Glass<em>Pin</em></span>
+  </a>
+
+  <nav class="nav-pill" aria-label="Navigasi utama">
+    <button class="nav-btn active" data-nav="home"><svg class="ic"><use href="#i-home"/></svg><span>Beranda</span></button>
+    <button class="nav-btn" data-nav="explore"><svg class="ic"><use href="#i-compass"/></svg><span>Jelajah</span></button>
+    <button class="nav-btn" data-nav="saved"><svg class="ic"><use href="#i-bookmark"/></svg><span>Tersimpan</span></button>
+  </nav>
+
+  <form class="search-wrap" id="searchForm" role="search" autocomplete="off">
+    <svg class="ic search-ic"><use href="#i-search"/></svg>
+    <input type="search" id="searchInput" placeholder="Cari inspirasi... (contoh: wallpaper keren)" aria-label="Cari" />
+    <button type="button" class="icon-btn search-clear" id="searchClear" title="Bersihkan" hidden>
+      <svg class="ic"><use href="#i-x"/></svg>
+    </button>
+    <div class="suggest glass" id="suggestBox" hidden></div>
+  </form>
+
+  <div class="nav-actions">
+    <button class="icon-btn" id="btnSettings" title="Pengaturan API">
+      <svg class="ic"><use href="#i-settings"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Filter chips ===== -->
+<div class="filter-bar">
+  <div class="chip-group" id="typeChips">
+    <button class="chip active" data-type="all"><svg class="ic"><use href="#i-grid"/></svg>Semua</button>
+    <button class="chip" data-type="image"><svg class="ic"><use href="#i-image"/></svg>Foto</button>
+    <button class="chip" data-type="video"><svg class="ic"><use href="#i-video"/></svg>Video</button>
+  </div>
+  <div class="chip-scroll" id="trendChips"></div>
+</div>
+
+<!-- ===== Konten utama ===== -->
+<main>
+  <section class="page-head" id="pageHead">
+    <h1 id="pageTitle">Inspirasi untukmu</h1>
+    <p id="pageSub">Kurasi gambar &amp; video elegan dari sumber terbuka — tanpa login.</p>
+  </section>
+
+  <div class="masonry" id="feed" aria-live="polite"></div>
+
+  <div class="feed-status" id="feedStatus">
+    <div class="skeletons" id="skeletons" hidden></div>
+    <button class="btn-ghost" id="loadMore" hidden>
+      <svg class="ic"><use href="#i-refresh"/></svg> Muat lebih banyak
+    </button>
+    <p class="end-note" id="endNote" hidden>Semua konten sudah dimuat.</p>
+    <div class="empty glass" id="emptyState" hidden>
+      <svg class="ic empty-ic"><use href="#i-search"/></svg>
+      <h3>Tidak ada hasil</h3>
+      <p>Coba kata kunci lain, misalnya: <em>wallpaper keren</em>, <em>alam</em>, <em>arsitektur</em>.</p>
+    </div>
+    <div class="error glass" id="errorState" hidden>
+      <svg class="ic"><use href="#i-info"/></svg>
+      <div>
+        <h3>Gagal memuat data</h3>
+        <p id="errorText">Periksa koneksi lalu coba lagi.</p>
+        <button class="btn-solid" id="retryBtn"><svg class="ic"><use href="#i-refresh"/></svg> Coba lagi</button>
+      </div>
+    </div>
+    <div id="sentinel" style="height:1px"></div>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer glass">
+  <div class="foot-brand">
+    <span class="brand-mark small"><svg class="ic"><use href="#i-pin"/></svg></span>
+    <div>
+      <strong>Glass<em>Pin</em></strong>
+      <p>Temukan, simpan, dan bagikan inspirasi.</p>
+    </div>
+  </div>
+  <p class="foot-note">Konten berasal dari sumber terbuka (Openverse, Wikimedia Commons, Pexels, Pixabay).
+    Hak cipta milik pencipta masing-masing. Ikon oleh <strong>Lucide</strong>.</p>
+  <p class="foot-copy">GlassPin — dirancang dengan elegan.</p>
+</footer>
+
+<!-- ===== Modal detail pin ===== -->
+<div class="modal-root" id="modalRoot" hidden>
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal glass" role="dialog" aria-modal="true" aria-label="Detail pin">
+    <button class="icon-btn modal-close" id="modalClose" title="Tutup"><svg class="ic"><use href="#i-x"/></svg></button>
+    <button class="icon-btn modal-nav prev" id="modalPrev" title="Sebelumnya"><svg class="ic"><use href="#i-chevron-left"/></svg></button>
+    <button class="icon-btn modal-nav next" id="modalNext" title="Berikutnya"><svg class="ic"><use href="#i-chevron-right"/></svg></button>
+
+    <div class="modal-grid">
+      <div class="modal-media" id="modalMedia"></div>
+
+      <aside class="modal-side">
+        <div class="modal-actions">
+          <button class="icon-btn" id="modalLike" title="Suka"><svg class="ic"><use href="#i-heart"/></svg></button>
+          <button class="icon-btn" id="modalSave" title="Simpan"><svg class="ic"><use href="#i-bookmark"/></svg></button>
+          <a class="icon-btn" id="modalSource" target="_blank" rel="noopener" title="Buka sumber asli"><svg class="ic"><use href="#i-external"/></svg></a>
+          <button class="btn-solid" id="modalDownload"><svg class="ic"><use href="#i-download"/></svg> Unduh</button>
+        </div>
+
+        <div class="modal-info">
+          <h2 id="modalTitle"></h2>
+          <p class="modal-desc" id="modalDesc"></p>
+
+          <div class="meta-rows" id="modalMeta"></div>
+
+          <div class="creator-row" id="modalCreator"></div>
+        </div>
+
+        <div class="comment-box">
+          <h3><svg class="ic"><use href="#i-message"/></svg> Komentar <span class="count" id="commentCount">0</span></h3>
+          <div class="comment-list" id="commentList"></div>
+          <form class="comment-form" id="commentForm">
+            <input type="text" id="commentName" placeholder="Nama kamu (opsional)" maxlength="40" />
+            <div class="comment-input-row">
+              <textarea id="commentText" placeholder="Tulis komentar..." rows="1" maxlength="1000" required></textarea>
+              <button type="submit" class="icon-btn send-btn" title="Kirim"><svg class="ic"><use href="#i-send"/></svg></button>
+            </div>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Modal pengaturan API ===== -->
+<div class="modal-root" id="settingsRoot" hidden>
+  <div class="modal-backdrop" data-close-settings></div>
+  <div class="modal settings-modal glass" role="dialog" aria-modal="true" aria-label="Pengaturan">
+    <button class="icon-btn modal-close" data-close-settings title="Tutup"><svg class="ic"><use href="#i-x"/></svg></button>
+    <div class="settings-body">
+      <h2><svg class="ic"><use href="#i-key"/></svg> Pengaturan Sumber Data</h2>
+      <p class="settings-lead">GlassPin langsung aktif tanpa API key. Untuk hasil <strong>lebih banyak &amp; video</strong>,
+        kamu bisa menambahkan key gratis dari Pexels / Pixabay (disimpan hanya di browser kamu).</p>
+
+      <label class="field">
+        <span>Pexels API Key <em>(opsional)</em></span>
+        <input type="password" id="keyPexels" placeholder="563492ad6f91700001..." />
+        <small>Gratis — daftar di pexels.com/api</small>
+      </label>
+
+      <label class="field">
+        <span>Pixabay API Key <em>(opsional)</em></span>
+        <input type="password" id="keyPixabay" placeholder="contoh: 1234567-abcd1234..." />
+        <small>Gratis — daftar di pixabay.com/api/docs</small>
+      </label>
+
+      <div class="settings-actions">
+        <button class="btn-solid" id="saveKeys"><svg class="ic"><use href="#i-check"/></svg> Simpan</button>
+        <button class="btn-ghost" id="clearKeys"><svg class="ic"><use href="#i-trash"/></svg> Hapus key</button>
+      </div>
+
+      <div class="status-pill" id="apiStatus"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
