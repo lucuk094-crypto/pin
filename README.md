@@ -15,6 +15,7 @@ Buka `http://localhost:8000` (port bisa diubah lewat env `PORT`).
 
 | Fitur | Keterangan |
 |---|---|
+| Auto-push | Setiap perubahan file otomatis di-commit & push ke GitHub |
 | Beranda (feed) | Kurasi otomatis topik populer, tampilan masonry |
 | Pencarian | Cari gambar/video — kueri Indonesia otomatis diekspansi ke Inggris |
 | Filter | Semua / Foto / Video |
